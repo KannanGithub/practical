@@ -1,0 +1,58 @@
+<ehcache updateCheck="false">
+
+    <diskStore path="java.io.tmpdir" />
+
+    <!--
+        Default Cache configuration. These settings will be applied to caches
+        created programmatically using CacheManager.add(String cacheName).
+        This element is optional, and using CacheManager.add(String cacheName) when
+        its not present will throw CacheException
+
+        The defaultCache has an implicit name "default" which is a reserved cache name.
+    -->
+    <defaultCache maxElementsInMemory="10000" eternal="false"
+                  statistics="true" timeToIdleSeconds="120" timeToLiveSeconds="120"
+                  overflowToDisk="true" diskPersistent="false"
+                  diskExpiryThreadIntervalSeconds="120" memoryStoreEvictionPolicy="LRU" />
+
+    <!--
+        name:
+        Sets the name of the cache. This is used to identify the cache. It must be unique.
+
+        eternal:
+        Sets whether elements are eternal. If eternal,  timeouts are ignored and the
+        element is never expired.
+
+        timeToIdleSeconds:
+        Sets the time to idle for an element before it expires.
+        i.e. The maximum amount of time between accesses before an element expires
+        Is only used if the element is not eternal.
+        Optional attribute. A value of 0 means that an Element can idle for infinity.
+        The default value is 0.
+
+        timeToLiveSeconds:
+        Sets the time to live for an element before it expires.
+        i.e. The maximum time between creation time and when an element expires.
+        Is only used if the element is not eternal.
+        Optional attribute. A value of 0 means that and Element can live for infinity.
+        The default value is 0.
+
+        memoryStoreEvictionPolicy:
+        Policy would be enforced upon reaching the maxElementsInMemory limit. Default
+        policy is Least Recently Used (specified as LRU). Other policies available -
+        First In First Out (specified as FIFO) and Less Frequently Used
+        (specified as LFU)
+
+        maxElementsInMemory:
+        Sets the maximum objects to be held in the MemoryStore.
+        0 translates to no-limit.
+     -->
+
+
+    <cache name="co.uk.costcutter.practical.ordersByCustomerId" eternal="false"
+           timeToLiveSeconds="21600"
+           timeToIdleSeconds="21600"
+           memoryStoreEvictionPolicy="LRU"
+           maxElementsInMemory="5" />
+
+</ehcache>
